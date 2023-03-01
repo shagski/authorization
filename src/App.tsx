@@ -1,5 +1,6 @@
-import { Layout } from "antd";
 import React from "react";
+import "antd/dist/reset.css";
+import { Layout } from "antd";
 import "./App.css";
 import AppRouter from "./components/AppRouter";
 import NavBar from "./components/NavBar";
