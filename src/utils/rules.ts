@@ -1,5 +1,5 @@
 export const rules = {
-  required: (massage: string) => ({
+  required: (massage: string = "обязательное поле") => ({
     required: true,
     massage,
   }),

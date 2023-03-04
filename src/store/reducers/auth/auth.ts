@@ -1,6 +1,7 @@
 import axios from "axios";
-import { AppDispatch } from "..";
-import { IUser } from "../../moduls/IUser";
+import { AppDispatch } from "../..";
+import UsersData from "../../../api/UsersData";
+import { IUser } from "../../../moduls/IUser";
 import {
   AuthAction,
   AuthActionEnum,
@@ -9,7 +10,7 @@ import {
   SetErrorAction,
   SetLoadingAction,
   SetUserAction,
-} from "./types";
+} from "../types";
 
 const initialState: AuthState = {
   IsAuth: false,
@@ -57,13 +58,13 @@ export const AuthActionCreators = {
     (username: string, password: string) => async (dispatch: AppDispatch) => {
       try {
         dispatch(AuthActionCreators.setLoading(true));
-        const response = await axios.get<IUser[]>("./users.json");
+        const response = await UsersData.getUsers();
         const mockUser = response.data.find(
           (user) => user.username === username && user.password === password
         );
         if (mockUser) {
-          localStorage.setItem("auth", " true"),
-            localStorage.setItem("username", mockUser.username);
+          localStorage.setItem("auth", "true");
+          localStorage.setItem("username", mockUser.username);
           dispatch(AuthActionCreators.setIsAuth(true));
           dispatch(AuthActionCreators.setUser(mockUser));
         } else {
