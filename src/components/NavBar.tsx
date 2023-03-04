@@ -1,15 +1,13 @@
 import React from "react";
 import { Layout, Menu, Row } from "antd";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useTypeSelector } from "../hooks/useTypeSelector";
-import { RouteNames } from "../routes";
+import { useActions } from "./../hooks/useActions";
 
 const NavBar: React.FC = () => {
-  const router = useHistory();
+  const router = useNavigate();
   const { IsAuth, user } = useTypeSelector((state) => state.auth);
-  const logout = () => {
-    return console.log("cl");
-  };
+  const { logout } = useActions();
 
   return (
     <Layout.Header>
@@ -25,7 +23,7 @@ const NavBar: React.FC = () => {
           </>
         ) : (
           <Menu theme="dark" mode="horizontal" selectable={false}>
-            <Menu.Item onClick={() => router.push(RouteNames.LOGIN)} key={1}>
+            <Menu.Item onClick={() => router("/login")} key={1}>
               Логин
             </Menu.Item>
           </Menu>

@@ -4,6 +4,7 @@ import { Layout } from "antd";
 import "./App.css";
 import AppRouter from "./components/AppRouter";
 import NavBar from "./components/NavBar";
+import { useActions } from "./hooks/useActions";
 
 const App: React.FC = () => {
   return (
