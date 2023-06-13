@@ -1,4 +1,3 @@
-import axios from "axios";
 import { AppDispatch } from "../..";
 import UsersData from "../../../api/UsersData";
 import { IUser } from "../../../moduls/IUser";
@@ -60,7 +59,8 @@ export const AuthActionCreators = {
         dispatch(AuthActionCreators.setLoading(true));
         const response = await UsersData.getUsers();
         const mockUser = response.data.find(
-          (user) => user.username === username && user.password === password
+          (user: IUser) =>
+            user.username === username && user.password === password
         );
         if (mockUser) {
           localStorage.setItem("auth", "true");
